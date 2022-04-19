@@ -1,0 +1,20 @@
+<body class="bg-gradient-primary">
+  <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion p-0">
+    <div class="container-fluid d-flex flex-column p-0">
+      <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" [routerLink]="['/']">
+        <h1 style="text-align: center;color: var(--bs-yellow);font-weight:bolder;font-style:italic;"><i class="fas fa-coins"></i>Admin</h1> 
+
+      </a>
+      <strong>(Authorized Personel Only)</strong>
+      <hr class="sidebar-divider my-0">
+      <ul class="navbar-nav text-light" id="accordionSidebar">
+        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['link-active']" routerLink="/"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['link-active']" routerLink="/adminstudent"><i class="fas fa-user"></i><span>Students</span></a></li>
+        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['link-active']" routerLink="/adminresult"><i class="fas fa-table"></i><span>&nbsp; Results </span></a>
+        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['link-active']" routerLink="/admincontact"><i class="fa fa-table"></i><span>Messages</span></a></li>
+        <li class="nav-item"><a class="nav-link" [routerLinkActive]="['link-active']" routerLink="/adminusers"><i class="far fa-user-circle"></i><span>Users</span></a></li>
+        <li class="nav-item"></li>
+      </ul>
+    </div>
+  </nav>
+</body>
