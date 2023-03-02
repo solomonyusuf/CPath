@@ -18,6 +18,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
+using System.Security.Permissions;
 
 namespace CPath
 {
@@ -33,16 +34,15 @@ namespace CPath
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-          
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-           
+                options.UseSqlite("Filename=Database.sqlite3"));
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            
+
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
             services.AddCors(options =>
@@ -52,7 +52,7 @@ namespace CPath
                     .AllowAnyMethod()
                     .AllowAnyHeader());
             });
-            
+
             services.Configure<FormOptions>(o =>
             {
                 o.ValueLengthLimit = 909715200;
@@ -93,6 +93,9 @@ namespace CPath
             {
                 app.UseSpaStaticFiles();
             }
+            // configure static file permission
+            FileIOPermission permission = new FileIOPermission(FileIOPermissionAccess.AllAccess, Path.Combine(Directory.GetCurrentDirectory(),"StaticFiles"));
+            permission.Demand();
 
             app.UseRouting();
             app.UseStaticFiles(new StaticFileOptions()
@@ -103,7 +106,7 @@ namespace CPath
             app.UseAuthentication();
             app.UseIdentityServer();
             app.UseAuthorization();
-           
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

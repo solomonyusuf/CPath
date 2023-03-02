@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+	  <NoWarn>$(NoWarn);SYSLIB0003</NoWarn>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
@@ -52,9 +53,10 @@
     <Compile Remove="Models\SeniourSubjects.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\StaticFiles\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Migrations\" />
+		<Folder Include="StaticFiles" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\assets\bootstrap\js\bootstrap.min.js" />

@@ -16,17 +16,20 @@ namespace CPath.Data
         public DbSet<New> News { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-       
+
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
+            Database.EnsureCreatedAsync();
+            if (Database.GetPendingMigrationsAsync().Result.Count() > 0)
+                Database.MigrateAsync();
         }
-       
+
         public DbSet<CPath.Models.ParentInfo> ParentInfo { get; set; }
-       
+
         public DbSet<CPath.Models.Result> Result { get; set; }
-       
+
         public DbSet<CPath.Models.Subject> Subject { get; set; }
     }
 }

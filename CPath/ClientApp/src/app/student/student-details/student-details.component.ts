@@ -11,8 +11,8 @@ export class StudentDetailsComponent implements OnInit {
 
   id: any;
   detail: any;
-    submit: boolean;
-    results: any;
+  submit: boolean;
+  results: any;
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {

@@ -15,7 +15,7 @@ namespace Cpath.Controllers
         {
             try
             {
-               // var file = Request.Form.Files[0];
+                // var file = Request.Form.Files[0];
                 var folderName = Path.Combine("StaticFiles");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
@@ -24,7 +24,7 @@ namespace Cpath.Controllers
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     var fullPath = Path.Combine(pathToSave, fileName);
                     var dbPath = Path.Combine(folderName, fileName);
-                    
+
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
@@ -43,7 +43,7 @@ namespace Cpath.Controllers
             }
         }
 
-        
+
 
         //public IActionResult Upload()
         //{
